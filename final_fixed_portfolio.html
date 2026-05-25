@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joshua K S | Vid-folio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#080808;--surface:#111111;--border:#1e1e1e;--border-hi:#2e2e2e;--text:#f0ece4;--muted:#767068;--accent:#c8a86a;--accent-hi:#e2c07e}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;font-size:14px;line-height:1.65;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(8,8,8,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase}
+    .nav-links{display:flex;gap:36px;list-style:none}
+    .nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
+    .nav-links a:hover{color:var(--text)}
+    .hero{min-height:100vh;padding:130px 52px 90px;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid var(--border);position:relative}
+    .hero-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;gap:14px}
+    .hero-tag::before{content:'';width:32px;height:1px;background:var(--accent)}
+    .hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(76px,13.5vw,174px);font-weight:900;line-height:0.88;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:32px}
+    .hero-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:clamp(18px,2.2vw,26px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+    .hero-desc{font-size:14px;color:var(--muted);line-height:1.75;max-width:440px}
+    .scroll-hint{position:absolute;bottom:36px;left:52px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+    .scroll-hint::after{content:'';width:36px;height:1px;background:var(--muted)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
+    .stat-item{padding:44px 52px;border-right:1px solid var(--border)}
+    .stat-item:last-child{border-right:none}
+    .stat-number{display:block;font-family:'Barlow Condensed',sans-serif;font-size:72px;font-weight:900;line-height:1}
+    .stat-label{display:block;margin-top:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+    .section-wrap{padding:80px 52px;border-bottom:1px solid var(--border)}
+    .section-label{display:flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:52px}
+    .section-label::after{content:'';flex:0 0 100px;height:1px;background:var(--border-hi)}
+    .profile-grid{display:grid;grid-template-columns:220px 1fr;gap:52px;margin-bottom:56px}
+    .profile-photo{width:220px;aspect-ratio:3/4;overflow:hidden;flex-shrink:0;border:1px solid var(--border)}
+    .profile-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .profile-name{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:800;text-transform:uppercase;letter-spacing:0.02em;line-height:1;margin-bottom:8px}
+    .profile-role-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:32px}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+    .detail-cell{padding:14px 20px 14px 0;border-bottom:1px solid var(--border)}
+    .detail-cell:nth-child(even){padding-left:24px;border-left:1px solid var(--border)}
+    .detail-key{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+    .detail-val{font-size:13.5px;font-weight:500}
+    .detail-val a{transition:color 0.2s}
+    .detail-val a:hover{color:var(--accent)}
+    .online{color:#7ec87e}
+    .what-i-do{border-top:1px solid var(--border);padding-top:52px}
+    .wid-heading{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+    .service-card{background:var(--bg);padding:30px 28px}
+    .svc-num{display:block;font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:900;color:var(--border-hi);line-height:1;margin-bottom:12px}
+    .svc-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px}
+    .svc-desc{font-size:12.5px;color:var(--muted);line-height:1.68}
+    .work-category{margin-bottom:64px}
+    .work-category:last-child{margin-bottom:0}
+    .wc-header{display:flex;align-items:baseline;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:20px}
+    .wc-title{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:0.03em}
+    .wc-meta{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.15em;color:var(--muted)}
+    .video-row{
+      display:flex;
+      gap:24px;
+      align-items:flex-start;
+      flex-wrap:wrap
+    }
+    .v-9-16{
+      width:220px;
+      flex-shrink:0
+    }
+    .v-9-16 .video-slot{padding-bottom:177.78%}
+    .v-9-16.travel-single{width:190px}
+    .v-16-9{
+      flex:1;
+      min-width:280px
+    }
+    .v-16-9 .video-slot{padding-bottom:56.25%}
+    .v-9-16.sf{
+      width:220px
+    }
+    .v-9-16.sf .video-slot{padding-bottom:177.78%}
+    .video-slot{position:relative;width:100%;background:var(--surface);border:1px solid var(--border);overflow:hidden}
+    .video-slot iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block}
+    .video-slot:hover
+    .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+    .process-step{background:var(--bg);padding:36px 32px}
+    .step-num{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.2em;color:var(--accent);margin-bottom:18px}
+    .step-name{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:12px}
+    .step-desc{font-size:12.5px;color:var(--muted);line-height:1.68}
+    .hire-wrap{padding:110px 52px;text-align:center;position:relative;overflow:hidden}
+    .hire-wrap::before{content:'HIRE';position:absolute;font-family:'Barlow Condensed',sans-serif;font-size:300px;font-weight:900;color:rgba(255,255,255,0.018);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap}
+    .hire-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+    .hire-heading{font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,9vw,104px);font-weight:900;text-transform:uppercase;line-height:0.93;margin-bottom:32px}
+    .hire-sub{font-size:14px;color:var(--muted);max-width:420px;margin:0 auto 48px;line-height:1.75}
+    .hire-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 36px;background:var(--accent);color:#080808;font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;transition:background 0.2s}
+    .hire-btn:hover{background:var(--accent-hi)}
+    footer{padding:28px 52px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .footer-copy{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
+    .footer-links{display:flex;gap:28px}
+    .footer-links a{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
+    .footer-links a:hover{color:var(--text)}
+    @media(max-width:860px){nav{padding:0 24px}.nav-links{gap:20px}.hero,.section-wrap,.hire-wrap{padding-left:24px;padding-right:24px}.hero{padding-top:100px}.scroll-hint{left:24px}.stats{grid-template-columns:1fr}.stat-item{border-right:none;border-bottom:1px solid var(--border);padding:28px 24px}.profile-grid{grid-template-columns:1fr;gap:32px}.services-grid{grid-template-columns:1fr 1fr}.process-grid{grid-template-columns:1fr 1fr}.video-row{flex-wrap:wrap}.v-9-16{width:calc(50% - 8px)}.v-9-16.sf{flex:0 0 calc(33% - 11px);width:auto}.v-16-9{flex:0 0 100%}footer{padding:24px;flex-direction:column;gap:16px;text-align:center}}
+    @media(max-width:540px){.services-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr}.v-9-16{width:100%}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Joshua KS</a>
+  <ul class="nav-links">
+    <li><a href="#resume">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#workflow">Process</a></li>
+    <li><a href="#hire">Hire Me</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Vid-folio</div>
+  <h1>STORIES<br>THAT MOVE<br>PEOPLE</h1>
+  <p class="hero-subtitle">Video Editor &amp; Motion Graphic Designer</p>
+  <p class="hero-desc">I create engaging video edits that combine storytelling, clean motion graphics, and sound design to make ideas clear and impactful.</p>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<div class="stats">
+  <div class="stat-item"><span class="stat-number">6</span><span class="stat-label">Step Workflow</span></div>
+  <div class="stat-item"><span class="stat-number">9</span><span class="stat-label">Featured Projects</span></div>
+  <div class="stat-item"><span class="stat-number">&#8734;</span><span class="stat-label">Ideas to Explore</span></div>
+</div>
+
+<section id="resume" class="section-wrap">
+  <div class="section-label">01 &#8212; Profile</div>
+  <div class="profile-grid">
+    <div class="profile-photo">
+      <img src="IMG_7213.jpg" alt="Joshua K S">
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">Joshua K S</div>
+      <div class="profile-role-tag">Video Editor &amp; Motion Graphic Designer</div>
+      <div class="detail-grid">
+        <div class="detail-cell"><div class="detail-key">Based in</div><div class="detail-val">India</div></div>
+        <div class="detail-cell"><div class="detail-key">Availability</div><div class="detail-val">Freelance &amp; Full-time</div></div>
+        <div class="detail-cell"><div class="detail-key">Instagram</div><div class="detail-val"><a href="https://instagram.com/joshua__ks" target="_blank" rel="noopener">@joshua__ks</a></div></div>
+        <div class="detail-cell"><div class="detail-key">Experience</div><div class="detail-val">2+ Years</div></div>
+        <div class="detail-cell"><div class="detail-key">Tools</div><div class="detail-val">Premiere Pro, DaVinci Resolve, CapCut</div></div>
+        <div class="detail-cell"><div class="detail-key">Status</div><div class="detail-val online">Open to Work</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="what-i-do">
+    <div class="wid-heading">What I Do</div>
+    <div class="services-grid">
+      <div class="service-card"><span class="svc-num">01</span><div class="svc-title">Ad Editing</div><div class="svc-desc">Fast-paced, conversion-focused edits for social ads. Hooks in the first two seconds, pacing that holds attention all the way through.</div></div>
+      <div class="service-card"><span class="svc-num">02</span><div class="svc-title">Motion Graphics</div><div class="svc-desc">Custom animations, titles, lower thirds and visual effects that give your video a polished, premium feel that stands out.</div></div>
+      <div class="service-card"><span class="svc-num">03</span><div class="svc-title">Short-Form Content</div><div class="svc-desc">Reels, TikToks and Shorts built for vertical. Music-synced, trend-aware edits engineered to stop the scroll.</div></div>
+      <div class="service-card"><span class="svc-num">04</span><div class="svc-title">Travel Films</div><div class="svc-desc">Cinematic travel edits that capture mood, movement and story — graded for an immersive, transportive experience.</div></div>
+      <div class="service-card"><span class="svc-num">05</span><div class="svc-title">Sound Design</div><div class="svc-desc">Music sync, SFX layering and audio mixing that give every video an emotional dimension visuals alone can't deliver.</div></div>
+      <div class="service-card"><span class="svc-num">06</span><div class="svc-title">Brand Reels</div><div class="svc-desc">Story-driven brand videos that communicate identity, product value and culture — built to perform across every platform.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="work" class="section-wrap">
+  <div class="section-label">02 &#8212; Work</div>
+
+  <!-- AD COPY -->
+  <div class="work-category">
+    <div class="wc-header">
+      <span class="wc-title">Ad Copy</span>
+      <span class="wc-meta">2 Videos &middot; 9:16</span>
+    </div>
+
+    <div class="video-row">
+      <div class="v-9-16">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/ipggFJ1YccI?loop=1&playlist=ipggFJ1YccI&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="v-9-16">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/-VB3wDxZ4FU?loop=1&playlist=-VB3wDxZ4FU&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAVEL -->
+  <div class="work-category">
+    <div class="wc-header">
+      <span class="wc-title">Travel</span>
+      <span class="wc-meta">1 Video &middot; 9:16</span>
+    </div>
+
+    <div class="video-row">
+      <div class="v-9-16 travel-single">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/yTrAx-s7Z2o?loop=1&playlist=yTrAx-s7Z2o&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANIMATION -->
+  <div class="work-category">
+    <div class="wc-header">
+      <span class="wc-title">Animation</span>
+      <span class="wc-meta">3 Videos &middot; 16:9</span>
+    </div>
+
+    <div class="video-row">
+      <div class="v-16-9">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/ZEg0oAlYLpA?loop=1&playlist=ZEg0oAlYLpA&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="v-16-9">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/wV9ZZcKNo6o?loop=1&playlist=wV9ZZcKNo6o&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="v-16-9">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/HPUxXnPzkE4?loop=1&playlist=HPUxXnPzkE4&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTHER SHORT FORM -->
+  <div class="work-category">
+    <div class="wc-header">
+      <span class="wc-title">Other Short Form</span>
+      <span class="wc-meta">3 Videos &middot; 9:16</span>
+    </div>
+
+    <div class="video-row">
+      <div class="v-9-16 sf">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/O606SaoNHF0?loop=1&playlist=O606SaoNHF0&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="v-9-16 sf">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/4rT8KT88hMI?loop=1&playlist=4rT8KT88hMI&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="v-9-16 sf">
+        <div class="video-slot">
+          <iframe src="https://www.youtube.com/embed/SAlCzSXhOak?loop=1&playlist=SAlCzSXhOak&autoplay=0&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="workflow" class="section-wrap">
+  <div class="section-label">03 &#8212; Process</div>
+  <div class="process-grid">
+    <div class="process-step"><div class="step-num">Step 01</div><div class="step-name">Brief</div><div class="step-desc">We start with a conversation. Understanding your goals, audience, tone, and deliverables so every edit is intentional from the start.</div></div>
+    <div class="process-step"><div class="step-num">Step 02</div><div class="step-name">Asset Collection</div><div class="step-desc">You share footage, brand kit, references, and music preferences. The cleaner the input, the sharper the output.</div></div>
+    <div class="process-step"><div class="step-num">Step 03</div><div class="step-name">Rough Cut</div><div class="step-desc">I assemble the structure — pacing, flow, and sequence. This is where ideas become something you can actually see.</div></div>
+    <div class="process-step"><div class="step-num">Step 04</div><div class="step-name">Motion &amp; Sound</div><div class="step-desc">Graphics, animations, colour grade, SFX, and music layering — the polish that transforms a cut into an experience.</div></div>
+    <div class="process-step"><div class="step-num">Step 05</div><div class="step-name">Review</div><div class="step-desc">You watch, react, and give feedback. I refine until it's exactly what you envisioned — or better than you expected.</div></div>
+    <div class="process-step"><div class="step-num">Step 06</div><div class="step-name">Delivery</div><div class="step-desc">Final export in your required format and resolution. Platform-optimised, deadline-ready, and ready to go live.</div></div>
+  </div>
+</section>
+
+<section id="hire" class="hire-wrap">
+  <div class="hire-tag">04 &#8212; Let's Work Together</div>
+  <h2 class="hire-heading">Got a project<br>in mind?</h2>
+  <p class="hire-sub">Whether it's a product ad, a travel film, or a full content strategy — I'm here to make it move. Let's talk.</p>
+  <a href="mailto:joshuaks001@gmail.com" class="hire-btn">Get in Touch &#8594;</a>
+</section>
+
+<footer>
+  <span class="footer-copy">Joshua K S &copy; 2026</span>
+  <div class="footer-links">
+    <a href="https://instagram.com/joshua__ks" target="_blank" rel="noopener">Instagram</a>
+    <a href="#work">Work</a>
+    <a href="#hire">Contact</a>
+  </div>
+</footer>
+
+
+</body>
+</html>
